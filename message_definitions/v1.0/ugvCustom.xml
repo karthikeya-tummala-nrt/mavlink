@@ -1,647 +1,394 @@
 <?xml version="1.0"?>
 <mavlink>
-<version>2</version>
+  <version>2</version>
 
-<enums>
+  <enums>
 
-  <enum name="MAV_TYPE">
-    <description>MAVLINK component type reported in HEARTBEAT message. Flight controllers must report the type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA).</description>
-    <entry value="0" name="MAV_TYPE_GENERIC">
-      <description>Generic micro air vehicle</description>
-    </entry>
-    <entry value="1" name="MAV_TYPE_FIXED_WING">
-      <description>Fixed wing aircraft.</description>
-    </entry>
-    <entry value="2" name="MAV_TYPE_QUADROTOR">
-      <description>Quadrotor</description>
-    </entry>
-    <entry value="3" name="MAV_TYPE_COAXIAL">
-      <description>Coaxial helicopter</description>
-    </entry>
-    <entry value="4" name="MAV_TYPE_HELICOPTER">
-      <description>Normal helicopter with tail rotor.</description>
-    </entry>
-    <entry value="5" name="MAV_TYPE_ANTENNA_TRACKER">
-      <description>Ground installation</description>
-    </entry>
-    <entry value="6" name="MAV_TYPE_GCS">
-      <description>Operator control unit / ground control station</description>
-    </entry>
-    <entry value="7" name="MAV_TYPE_AIRSHIP">
-      <description>Airship, controlled</description>
-    </entry>
-    <entry value="8" name="MAV_TYPE_FREE_BALLOON">
-      <description>Free balloon, uncontrolled</description>
-    </entry>
-    <entry value="9" name="MAV_TYPE_ROCKET">
-      <description>Rocket</description>
-    </entry>
-    <entry value="10" name="MAV_TYPE_GROUND_ROVER">
-      <description>Ground rover</description>
-    </entry>
-    <entry value="11" name="MAV_TYPE_SURFACE_BOAT">
-      <description>Surface vessel, boat, ship</description>
-    </entry>
-    <entry value="12" name="MAV_TYPE_SUBMARINE">
-      <description>Submarine</description>
-    </entry>
-    <entry value="13" name="MAV_TYPE_HEXAROTOR">
-      <description>Hexarotor</description>
-    </entry>
-    <entry value="14" name="MAV_TYPE_OCTOROTOR">
-      <description>Octorotor</description>
-    </entry>
-    <entry value="15" name="MAV_TYPE_TRICOPTER">
-      <description>Tricopter</description>
-    </entry>
-    <entry value="16" name="MAV_TYPE_FLAPPING_WING">
-      <description>Flapping wing</description>
-    </entry>
-    <entry value="17" name="MAV_TYPE_KITE">
-      <description>Kite</description>
-    </entry>
-    <entry value="18" name="MAV_TYPE_ONBOARD_CONTROLLER">
-      <description>Onboard companion controller</description>
-    </entry>
-    <entry value="19" name="MAV_TYPE_VTOL_TAILSITTER_DUOROTOR">
-      <description>Two-rotor Tailsitter VTOL that additionally uses control surfaces in vertical operation. Note, value previously named MAV_TYPE_VTOL_DUOROTOR.</description>
-    </entry>
-    <entry value="20" name="MAV_TYPE_VTOL_TAILSITTER_QUADROTOR">
-      <description>Quad-rotor Tailsitter VTOL using a V-shaped quad config in vertical operation. Note: value previously named MAV_TYPE_VTOL_QUADROTOR.</description>
-    </entry>
-    <entry value="21" name="MAV_TYPE_VTOL_TILTROTOR">
-      <description>Tiltrotor VTOL. Fuselage and wings stay (nominally) horizontal in all flight phases. It able to tilt (some) rotors to provide thrust in cruise flight.</description>
-    </entry>
-    <entry value="22" name="MAV_TYPE_VTOL_FIXEDROTOR">
-      <description>VTOL with separate fixed rotors for hover and cruise flight. Fuselage and wings stay (nominally) horizontal in all flight phases.</description>
-    </entry>
-    <entry value="23" name="MAV_TYPE_VTOL_TAILSITTER">
-      <description>Tailsitter VTOL. Fuselage and wings orientation changes depending on flight phase: vertical for hover, horizontal for cruise. Use more specific VTOL MAV_TYPE_VTOL_TAILSITTER_DUOROTOR or MAV_TYPE_VTOL_TAILSITTER_QUADROTOR if appropriate.</description>
-    </entry>
-    <entry value="24" name="MAV_TYPE_VTOL_TILTWING">
-      <description>Tiltwing VTOL. Fuselage stays horizontal in all flight phases. The whole wing, along with any attached engine, can tilt between vertical and horizontal mode.</description>
-    </entry>
-    <!-- Entry 25 reserved for other VTOL airframe -->
-    <entry value="25" name="MAV_TYPE_VTOL_RESERVED5">
-      <description>VTOL reserved 5</description>
-    </entry>
-    <entry value="26" name="MAV_TYPE_GIMBAL">
-      <description>Gimbal</description>
-    </entry>
-    <entry value="27" name="MAV_TYPE_ADSB">
-      <description>ADSB system</description>
-    </entry>
-    <entry value="28" name="MAV_TYPE_PARAFOIL">
-      <description>Steerable, nonrigid airfoil</description>
-    </entry>
-    <entry value="29" name="MAV_TYPE_DODECAROTOR">
-      <description>Dodecarotor</description>
-    </entry>
-    <entry value="30" name="MAV_TYPE_CAMERA">
-      <description>Camera</description>
-    </entry>
-    <entry value="31" name="MAV_TYPE_CHARGING_STATION">
-      <description>Charging station</description>
-    </entry>
-    <entry value="32" name="MAV_TYPE_FLARM">
-      <description>FLARM collision avoidance system</description>
-    </entry>
-    <entry value="33" name="MAV_TYPE_SERVO">
-      <description>Servo</description>
-    </entry>
-    <entry value="34" name="MAV_TYPE_ODID">
-      <description>Open Drone ID. See https://mavlink.io/en/services/opendroneid.html.</description>
-    </entry>
-    <entry value="35" name="MAV_TYPE_DECAROTOR">
-      <description>Decarotor</description>
-    </entry>
-    <entry value="36" name="MAV_TYPE_BATTERY">
-      <description>Battery</description>
-    </entry>
-    <entry value="37" name="MAV_TYPE_PARACHUTE">
-      <description>Parachute</description>
-    </entry>
-    <entry value="38" name="MAV_TYPE_LOG">
-      <description>Log</description>
-    </entry>
-    <entry value="39" name="MAV_TYPE_OSD">
-      <description>OSD</description>
-    </entry>
-    <entry value="40" name="MAV_TYPE_IMU">
-      <description>IMU</description>
-    </entry>
-    <entry value="41" name="MAV_TYPE_GPS">
-      <description>GPS</description>
-    </entry>
-    <entry value="42" name="MAV_TYPE_WINCH">
-      <description>Winch</description>
-    </entry>
-    <entry value="43" name="MAV_TYPE_GENERIC_MULTIROTOR">
-      <description>Generic multirotor that does not fit into a specific type or whose type is unknown</description>
-    </entry>
-    <entry value="44" name="MAV_TYPE_ILLUMINATOR">
-      <description>Illuminator. An illuminator is a light source that is used for lighting up dark areas external to the system: e.g. a torch or searchlight (as opposed to a light source for illuminating the system itself, e.g. an indicator light).</description>
-    </entry>
-    <entry value="45" name="MAV_TYPE_SPACECRAFT_ORBITER">
-      <description>Orbiter spacecraft. Includes satellites orbiting terrestrial and extra-terrestrial bodies. Follows NASA Spacecraft Classification.</description>
-    </entry>
-    <entry value="46" name="MAV_TYPE_GROUND_QUADRUPED">
-      <description>A generic four-legged ground vehicle (e.g., a robot dog).</description>
-    </entry>
-    <entry value="47" name="MAV_TYPE_VTOL_GYRODYNE">
-      <description>VTOL hybrid of helicopter and autogyro. It has a main rotor for lift and separate propellers for forward flight. The rotor must be powered for hover but can autorotate in cruise flight. See: https://en.wikipedia.org/wiki/Gyrodyne</description>
-    </entry>
-    <entry value="48" name="MAV_TYPE_GRIPPER">
-      <description>Gripper</description>
-    </entry>
-    <entry value="49" name="MAV_TYPE_RADIO">
-      <description>Radio</description>
-    </entry>
-  </enum>
+    <enum name="MAV_TYPE">
+      <description>MAVLINK component type reported in HEARTBEAT message. Flight controllers must report the type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA).</description>
+      <entry value="18" name="MAV_TYPE_ONBOARD_CONTROLLER">
+        <description>Onboard companion controller</description>
+      </entry>
+    </enum>
 
-  <enum name="MAV_AUTOPILOT">
-    <description>Micro air vehicle / autopilot classes. This identifies the individual model.</description>
-    <entry value="0" name="MAV_AUTOPILOT_GENERIC">
-      <description>Generic autopilot, full support for everything</description>
-    </entry>
-    <entry value="1" name="MAV_AUTOPILOT_RESERVED">
-      <description>Reserved for future use.</description>
-    </entry>
-    <entry value="2" name="MAV_AUTOPILOT_SLUGS">
-      <description>SLUGS autopilot, http://slugsuav.soe.ucsc.edu</description>
-    </entry>
-    <entry value="3" name="MAV_AUTOPILOT_ARDUPILOTMEGA">
-      <description>ArduPilot - Plane/Copter/Rover/Sub/Tracker, https://ardupilot.org</description>
-    </entry>
-    <entry value="4" name="MAV_AUTOPILOT_OPENPILOT">
-      <description>OpenPilot, http://openpilot.org</description>
-    </entry>
-    <entry value="5" name="MAV_AUTOPILOT_GENERIC_WAYPOINTS_ONLY">
-      <description>Generic autopilot only supporting simple waypoints</description>
-    </entry>
-    <entry value="6" name="MAV_AUTOPILOT_GENERIC_WAYPOINTS_AND_SIMPLE_NAVIGATION_ONLY">
-      <description>Generic autopilot supporting waypoints and other simple navigation commands</description>
-    </entry>
-    <entry value="7" name="MAV_AUTOPILOT_GENERIC_MISSION_FULL">
-      <description>Generic autopilot supporting the full mission command set</description>
-    </entry>
-    <entry value="8" name="MAV_AUTOPILOT_INVALID">
-      <description>No valid autopilot, e.g. a GCS or other MAVLink component</description>
-    </entry>
-    <entry value="9" name="MAV_AUTOPILOT_PPZ">
-      <description>PPZ UAV - http://nongnu.org/paparazzi</description>
-    </entry>
-    <entry value="10" name="MAV_AUTOPILOT_UDB">
-      <description>UAV Dev Board</description>
-    </entry>
-    <entry value="11" name="MAV_AUTOPILOT_FP">
-      <description>FlexiPilot</description>
-    </entry>
-    <entry value="12" name="MAV_AUTOPILOT_PX4">
-      <description>PX4 Autopilot - http://px4.io/</description>
-    </entry>
-    <entry value="13" name="MAV_AUTOPILOT_SMACCMPILOT">
-      <description>SMACCMPilot - http://smaccmpilot.org</description>
-    </entry>
-    <entry value="14" name="MAV_AUTOPILOT_AUTOQUAD">
-      <description>AutoQuad -- http://autoquad.org</description>
-    </entry>
-    <entry value="15" name="MAV_AUTOPILOT_ARMAZILA">
-      <description>Armazila -- http://armazila.com</description>
-    </entry>
-    <entry value="16" name="MAV_AUTOPILOT_AEROB">
-      <description>Aerob -- http://aerob.ru</description>
-    </entry>
-    <entry value="17" name="MAV_AUTOPILOT_ASLUAV">
-      <description>ASLUAV autopilot -- http://www.asl.ethz.ch</description>
-    </entry>
-    <entry value="18" name="MAV_AUTOPILOT_SMARTAP">
-      <description>SmartAP Autopilot - http://sky-drones.com</description>
-    </entry>
-    <entry value="19" name="MAV_AUTOPILOT_AIRRAILS">
-      <description>AirRails - http://uaventure.com</description>
-    </entry>
-    <entry value="20" name="MAV_AUTOPILOT_REFLEX">
-      <description>Fusion Reflex - https://fusion.engineering</description>
-    </entry>
-  </enum>
+    <enum name="MAV_AUTOPILOT">
+      <description>Micro air vehicle / autopilot classes. This identifies the individual model.</description>
+      <entry value="8" name="MAV_AUTOPILOT_INVALID">
+        <description>No valid autopilot, e.g. a GCS or other MAVLink component</description>
+      </entry>
+    </enum>
 
-  <enum name="MAV_MODE_FLAG" bitmask="true">
-    <description>These flags encode the MAV mode, see MAV_MODE enum for useful combinations.</description>
-    <entry value="128" name="MAV_MODE_FLAG_SAFETY_ARMED">
-      <description>0b10000000 MAV safety set to armed. Motors are enabled / running / can start. Ready to fly. Additional note: this flag is to be ignore when sent in the command MAV_CMD_DO_SET_MODE and MAV_CMD_COMPONENT_ARM_DISARM shall be used instead. The flag can still be used to report the armed state.</description>
-    </entry>
-    <entry value="64" name="MAV_MODE_FLAG_MANUAL_INPUT_ENABLED">
-      <description>0b01000000 remote control input is enabled.</description>
-    </entry>
-    <entry value="32" name="MAV_MODE_FLAG_HIL_ENABLED">
-      <description>0b00100000 hardware in the loop simulation. All motors / actuators are blocked, but internal software is full operational.</description>
-    </entry>
-    <entry value="16" name="MAV_MODE_FLAG_STABILIZE_ENABLED">
-      <description>0b00010000 system stabilizes electronically its attitude (and optionally position). It needs however further control inputs to move around.</description>
-    </entry>
-    <entry value="8" name="MAV_MODE_FLAG_GUIDED_ENABLED">
-      <description>0b00001000 guided mode enabled, system flies waypoints / mission items.</description>
-    </entry>
-    <entry value="4" name="MAV_MODE_FLAG_AUTO_ENABLED">
-      <description>0b00000100 autonomous mode enabled, system finds its own goal positions. Guided flag can be set or not, depends on the actual implementation.</description>
-    </entry>
-    <entry value="2" name="MAV_MODE_FLAG_TEST_ENABLED">
-      <description>0b00000010 system has a test mode enabled. This flag is intended for temporary system tests and should not be used for stable implementations.</description>
-    </entry>
-    <entry value="1" name="MAV_MODE_FLAG_CUSTOM_MODE_ENABLED">
-      <description>0b00000001 system-specific custom mode is enabled. When using this flag to enable a custom mode all other flags should be ignored.</description>
-    </entry>
-  </enum>
+    <enum name="MAV_MODE_FLAG" bitmask="true">
+      <description>These flags encode the MAV mode, see MAV_MODE enum for useful combinations.</description>
+      <entry value="1" name="MAV_MODE_FLAG_CUSTOM_MODE_ENABLED">
+        <description>0b00000001 system-specific custom mode is enabled. When using this flag to enable a custom mode all other flags should be ignored.</description>
+      </entry>
+    </enum>
 
-  <enum name="MAV_STATE">
-  <entry value="0" name="MAV_STATE_UNINIT">
-    <description>Uninitialized system, state is unknown.</description>
-  </entry>
-  <entry value="1" name="MAV_STATE_BOOT">
-    <description>System is booting up.</description>
-  </entry>
-  <entry value="2" name="MAV_STATE_CALIBRATING">
-    <description>System is calibrating and not flight-ready.</description>
-  </entry>
-  <entry value="3" name="MAV_STATE_STANDBY">
-    <description>System is grounded and on standby. It can be launched any time.</description>
-  </entry>
-  <entry value="4" name="MAV_STATE_ACTIVE">
-    <description>System is active and might be already airborne. Motors are engaged.</description>
-  </entry>
-  <entry value="5" name="MAV_STATE_CRITICAL">
-    <description>System is in a non-normal flight mode (failsafe). It can however still navigate.</description>
-  </entry>
-  <entry value="6" name="MAV_STATE_EMERGENCY">
-    <description>System is in a non-normal flight mode (failsafe). It lost control over parts or over the whole airframe. It is in mayday and going down.</description>
-  </entry>
-  <entry value="7" name="MAV_STATE_POWEROFF">
-    <description>System just initialized its power-down sequence, will shut down now.</description>
-  </entry>
-  <entry value="8" name="MAV_STATE_FLIGHT_TERMINATION">
-    <description>System is terminating itself (failsafe or commanded).</description>
-  </entry>
-</enum>
+    <enum name="MAV_STATE">
+      <entry value="3" name="MAV_STATE_STANDBY">
+        <description>System is grounded and on standby. It can be launched any time.</description>
+      </entry>
+      <entry value="4" name="MAV_STATE_ACTIVE">
+        <description>System is active and might be already airborne. Motors are engaged.</description>
+      </entry>
+    </enum>
 
-  <enum name="MAV_CMD">
+    <enum name="MAV_CMD">
+      <description>Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data. NaN and INT32_MAX may be used in float/integer params (respectively) to indicate optional/default values (e.g. to use the component's current yaw or latitude rather than a specific value). See https://mavlink.io/en/guide/xml_schema.html#MAV_CMD for information about the structure of the MAV_CMD entries</description>
+      <entry value="176" name="MAV_CMD_DO_SET_MODE" hasLocation="false" isDestination="false">
+        <description>Set system mode.</description>
+        <param index="1" label="Mode" enum="MAV_MODE_FLAG">Mode flags. MAV_MODE values can be used to set some mode flag combinations.</param>
+        <param index="2" label="Custom Mode">Custom system-specific mode (see target autopilot specifications for mode information). If MAV_MODE_FLAG_CUSTOM_MODE_ENABLED is set in param1 (mode) this mode is used: otherwise the field is ignored.</param>
+        <param index="3" label="Custom Submode">Custom sub mode - this is system specific, please refer to the individual autopilot specifications for details.</param>
+        <param index="4">Empty</param>
+        <param index="5">Empty</param>
+        <param index="6">Empty</param>
+        <param index="7">Empty</param>
+      </entry>
+      <entry value="400" name="MAV_CMD_COMPONENT_ARM_DISARM" hasLocation="false" isDestination="false">
+        <description>Arms / Disarms a component</description>
+        <param index="1" label="Arm" enum="MAV_BOOL">Arm (MAV_BOOL_FALSE: disarm). Values not equal to 0 or 1 are invalid.</param>
+        <param index="2" label="Force" minValue="0" maxValue="21196" increment="21196">0: arm-disarm unless prevented by safety checks (i.e. when landed), 21196: force arming/disarming (e.g. allow arming to override preflight checks and disarming in flight)</param>
+      </entry>
+      <entry value="512" name="MAV_CMD_REQUEST_MESSAGE" hasLocation="false" isDestination="false">
+        <description>Request the target system(s) emit a single instance of a specified message (i.e. a "one-shot" version of MAV_CMD_SET_MESSAGE_INTERVAL).</description>
+        <param index="1" label="Message ID" minValue="0" maxValue="16777215" increment="1">The MAVLink message ID of the requested message.</param>
+        <param index="2" label="Req Param 1">Use for index ID, if required. Otherwise, the use of this parameter (if any) must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="3" label="Req Param 2">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="4" label="Req Param 3">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="5" label="Req Param 4">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="6" label="Req Param 5">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
+        <param index="7" label="Response Target" minValue="0" maxValue="2" increment="1">Target address for requested message (if message has target address fields). 0: Flight-stack default, 1: address of requester, 2: broadcast.</param>
+      </entry>
+    </enum>
 
-    <entry value="176" name="MAV_CMD_DO_SET_MODE" hasLocation="false" isDestination="false">
-      <description>Set system mode.</description>
-      <param index="1" label="Mode" enum="MAV_MODE_FLAG">Mode flags. MAV_MODE values can be used to set some mode flag combinations.</param>
-      <param index="2" label="Custom Mode">Custom system-specific mode (see target autopilot specifications for mode information). If MAV_MODE_FLAG_CUSTOM_MODE_ENABLED is set in param1 (mode) this mode is used: otherwise the field is ignored.</param>
-      <param index="3" label="Custom Submode">Custom sub mode - this is system specific, please refer to the individual autopilot specifications for details.</param>
-      <param index="4">Empty</param>
-      <param index="5">Empty</param>
-      <param index="6">Empty</param>
-      <param index="7">Empty</param>
-    </entry>
+    <enum name="MAV_RESULT">
+      <description>Result from a MAVLink command (MAV_CMD)</description>
+      <entry value="0" name="MAV_RESULT_ACCEPTED">
+        <description>Command is valid (is supported and has valid parameters), and was executed.</description>
+      </entry>
+      <entry value="1" name="MAV_RESULT_TEMPORARILY_REJECTED">
+        <description>Command is valid, but cannot be executed at this time. This is used to indicate a problem that should be fixed just by waiting (e.g. a state machine is busy, can't arm because have not got GPS lock, etc.). Retrying later should work.</description>
+      </entry>
+      <entry value="2" name="MAV_RESULT_DENIED">
+        <description>Command is invalid; it is supported but one or more parameter values are invalid (i.e. parameter reserved, value allowed by spec but not supported by flight stack, and so on). Retrying the same command and parameters will not work.</description>
+      </entry>
+      <entry value="3" name="MAV_RESULT_UNSUPPORTED">
+        <description>Command is not supported (unknown).</description>
+      </entry>
+      <entry value="4" name="MAV_RESULT_FAILED">
+        <description>Command is valid, but execution has failed. This is used to indicate any non-temporary or unexpected problem, i.e. any problem that must be fixed before the command can succeed/be retried. For example, attempting to write a file when out of memory, attempting to arm when sensors are not calibrated, etc.</description>
+      </entry>
+      <entry value="5" name="MAV_RESULT_IN_PROGRESS">
+        <description>Command is valid and is being executed. This will be followed by further progress updates, i.e. the component may send further COMMAND_ACK messages with result MAV_RESULT_IN_PROGRESS (at a rate decided by the implementation), and must terminate by sending a COMMAND_ACK message with final result of the operation. The COMMAND_ACK.progress field can be used to indicate the progress of the operation.</description>
+      </entry>
+      <entry value="6" name="MAV_RESULT_CANCELLED">
+        <description>Command has been cancelled (as a result of receiving a COMMAND_CANCEL message).</description>
+      </entry>
+      <entry value="7" name="MAV_RESULT_COMMAND_LONG_ONLY">
+        <description>Command is only accepted when sent as a COMMAND_LONG.</description>
+      </entry>
+      <entry value="8" name="MAV_RESULT_COMMAND_INT_ONLY">
+        <description>Command is only accepted when sent as a COMMAND_INT.</description>
+      </entry>
+      <entry value="9" name="MAV_RESULT_COMMAND_UNSUPPORTED_MAV_FRAME">
+        <description>Command is invalid because a frame is required and the specified frame is not supported.</description>
+      </entry>
+      <entry value="10" name="MAV_RESULT_NOT_IN_CONTROL">
+        <wip/>
+        <description>Command has been rejected because source system is not in control of the target system/component.</description>
+      </entry>
+    </enum>
 
-    <entry value="400" name="MAV_CMD_COMPONENT_ARM_DISARM" hasLocation="false" isDestination="false">
-      <description>Arms / Disarms a component</description>
-      <param index="1" label="Arm" enum="MAV_BOOL">Arm (MAV_BOOL_FALSE: disarm). Values not equal to 0 or 1 are invalid.</param>
-      <param index="2" label="Force" minValue="0" maxValue="21196" increment="21196">0: arm-disarm unless prevented by safety checks (i.e. when landed), 21196: force arming/disarming (e.g. allow arming to override preflight checks and disarming in flight)</param>
-    </entry>
+    <enum name="MAV_BOOL" bitmask="true">
+      <description>Enum used to indicate true or false (also: success or failure, enabled or disabled, active or inactive).</description>
+      <entry value="0" name="MAV_BOOL_FALSE">
+        <description>False.</description>
+      </entry>
+      <entry value="1" name="MAV_BOOL_TRUE">
+        <description>True.</description>
+      </entry>
+    </enum>
 
-    <entry value="512" name="MAV_CMD_REQUEST_MESSAGE" hasLocation="false" isDestination="false">
-      <description>Request the target system(s) emit a single instance of a specified message (i.e. a "one-shot" version of MAV_CMD_SET_MESSAGE_INTERVAL).</description>
-      <param index="1" label="Message ID" minValue="0" maxValue="16777215" increment="1">The MAVLink message ID of the requested message.</param>
-      <param index="2" label="Req Param 1">Use for index ID, if required. Otherwise, the use of this parameter (if any) must be defined in the requested message. By default assumed not used (0).</param>
-      <param index="3" label="Req Param 2">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
-      <param index="4" label="Req Param 3">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
-      <param index="5" label="Req Param 4">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
-      <param index="6" label="Req Param 5">The use of this parameter (if any), must be defined in the requested message. By default assumed not used (0).</param>
-      <param index="7" label="Response Target" minValue="0" maxValue="2" increment="1">Target address for requested message (if message has target address fields). 0: Flight-stack default, 1: address of requester, 2: broadcast.</param>
-    </entry>
+    <enum name="TOGGLE_SWITCH_BITMASK" bitmask="true">
+      <description>These encode the sub systems whose status is sent as part of the MANUAL_CONTROL message.</description>
+      <entry value="1" name="FORWARD_DIRECTION">
+        <description>0x01 Forward Direction</description>
+      </entry>
+      <entry value="2" name="REVERSE_DIRECTION">
+        <description>0x02 Reverse Direction</description>
+      </entry>
+      <entry value="4" name="MEDIUM_SPEED">
+        <description>0x04 Medium Speed</description>
+      </entry>
+      <entry value="8" name="HIGH_SPEED">
+        <description>0x08 High Speed</description>
+      </entry>
+    </enum>
 
-  </enum>
+    <enum name="MAV_MODE_FLAG" bitmask="true">
+      <description>These flags encode the MAV mode, see MAV_MODE enum for useful combinations.</description>
+      <entry value="128" name="MAV_MODE_FLAG_SAFETY_ARMED">
+        <description>0b10000000 MAV safety set to armed. Motors are enabled / running / can start. Ready to fly. Additional note: this flag is to be ignore when sent in the command MAV_CMD_DO_SET_MODE and MAV_CMD_COMPONENT_ARM_DISARM shall be used instead. The flag can still be used to report the armed state.</description>
+      </entry>
+      <entry value="64" name="MAV_MODE_FLAG_MANUAL_INPUT_ENABLED">
+        <description>0b01000000 remote control input is enabled.</description>
+      </entry>
+      <entry value="32" name="MAV_MODE_FLAG_HIL_ENABLED">
+        <description>0b00100000 hardware in the loop simulation. All motors / actuators are blocked, but internal software is full operational.</description>
+      </entry>
+      <entry value="16" name="MAV_MODE_FLAG_STABILIZE_ENABLED">
+        <description>0b00010000 system stabilizes electronically its attitude (and optionally position). It needs however further control inputs to move around.</description>
+      </entry>
+      <entry value="8" name="MAV_MODE_FLAG_GUIDED_ENABLED">
+        <description>0b00001000 guided mode enabled, system flies waypoints / mission items.</description>
+      </entry>
+      <entry value="4" name="MAV_MODE_FLAG_AUTO_ENABLED">
+        <description>0b00000100 autonomous mode enabled, system finds its own goal positions. Guided flag can be set or not, depends on the actual implementation.</description>
+      </entry>
+      <entry value="2" name="MAV_MODE_FLAG_TEST_ENABLED">
+        <description>0b00000010 system has a test mode enabled. This flag is intended for temporary system tests and should not be used for stable implementations.</description>
+      </entry>
+      <entry value="1" name="MAV_MODE_FLAG_CUSTOM_MODE_ENABLED">
+        <description>0b00000001 system-specific custom mode is enabled. When using this flag to enable a custom mode all other flags should be ignored.</description>
+      </entry>
+    </enum>
 
-  <enum name="MAV_RESULT">
-    <description>Result from a MAVLink command (MAV_CMD)</description>
-    <entry value="0" name="MAV_RESULT_ACCEPTED">
-      <description>Command is valid (is supported and has valid parameters), and was executed.</description>
-    </entry>
-    <entry value="1" name="MAV_RESULT_TEMPORARILY_REJECTED">
-      <description>Command is valid, but cannot be executed at this time. This is used to indicate a problem that should be fixed just by waiting (e.g. a state machine is busy, can't arm because have not got GPS lock, etc.). Retrying later should work.</description>
-    </entry>
-    <entry value="2" name="MAV_RESULT_DENIED">
-      <description>Command is invalid; it is supported but one or more parameter values are invalid (i.e. parameter reserved, value allowed by spec but not supported by flight stack, and so on). Retrying the same command and parameters will not work.</description>
-    </entry>
-    <entry value="3" name="MAV_RESULT_UNSUPPORTED">
-      <description>Command is not supported (unknown).</description>
-    </entry>
-    <entry value="4" name="MAV_RESULT_FAILED">
-      <description>Command is valid, but execution has failed. This is used to indicate any non-temporary or unexpected problem, i.e. any problem that must be fixed before the command can succeed/be retried. For example, attempting to write a file when out of memory, attempting to arm when sensors are not calibrated, etc.</description>
-    </entry>
-    <entry value="5" name="MAV_RESULT_IN_PROGRESS">
-      <description>Command is valid and is being executed. This will be followed by further progress updates, i.e. the component may send further COMMAND_ACK messages with result MAV_RESULT_IN_PROGRESS (at a rate decided by the implementation), and must terminate by sending a COMMAND_ACK message with final result of the operation. The COMMAND_ACK.progress field can be used to indicate the progress of the operation.</description>
-    </entry>
-    <entry value="6" name="MAV_RESULT_CANCELLED">
-      <description>Command has been cancelled (as a result of receiving a COMMAND_CANCEL message).</description>
-    </entry>
-    <entry value="7" name="MAV_RESULT_COMMAND_LONG_ONLY">
-      <description>Command is only accepted when sent as a COMMAND_LONG.</description>
-    </entry>
-    <entry value="8" name="MAV_RESULT_COMMAND_INT_ONLY">
-      <description>Command is only accepted when sent as a COMMAND_INT.</description>
-    </entry>
-    <entry value="9" name="MAV_RESULT_COMMAND_UNSUPPORTED_MAV_FRAME">
-      <description>Command is invalid because a frame is required and the specified frame is not supported.</description>
-    </entry>
-    <entry value="10" name="MAV_RESULT_NOT_IN_CONTROL">
-      <wip/>
-      <description>Command has been rejected because source system is not in control of the target system/component.</description>
-    </entry>
-  </enum>
+    <enum name="UGV_COMP_BITMASK" bitmask="true">
+      <description>These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message.</description>
+      <entry value="1" name="UGV_COMP_COMP_COMPUTE">
+        <description>0x01 Atlas Compute</description>
+      </entry>
 
-  <enum name="MAV_BOOL" bitmask="true">
-    <description>Enum used to indicate true or false (also: success or failure, enabled or disabled, active or inactive).</description>
-    <entry value="0" name="MAV_BOOL_FALSE">
-      <description>False.</description>
-    </entry>
-    <entry value="1" name="MAV_BOOL_TRUE">
-      <description>True.</description>
-    </entry>
-  </enum>
+      <entry value="2" name="UGV_COMP_VCU">
+        <description>0x02 Vehicle Control Unit (VCU)</description>
+      </entry>
 
-  <enum name="TOGGLE_SWITCH_BITMASK" bitmask="true">
-    <description>These encode the sub systems whose status is sent as part of the MANUAL_CONTROL message.</description>
-    <entry value="1" name="FORWARD_DIRECTION">
-      <description>0x01 Forward Direction</description>
-    </entry>
-    <entry value="2" name="REVERSE_DIRECTION">
-      <description>0x02 Reverse Direction</description>
-    </entry>
-    <entry value="4" name="MEDIUM_SPEED">
-      <description>0x04 Medium Speed</description>
-    </entry>
-    <entry value="8" name="HIGH_SPEED">
-      <description>0x08 High Speed</description>
-    </entry>
-  </enum>
+      <entry value="4" name="UGV_COMP_MOTOR_FRONT">
+        <description>0x04 Motor Controller (front)</description>
+      </entry>
 
-  <enum name="MAV_MODE_FLAG" bitmask="true">
-    <description>These flags encode the MAV mode, see MAV_MODE enum for useful combinations.</description>
-    <entry value="128" name="MAV_MODE_FLAG_SAFETY_ARMED">
-      <description>0b10000000 MAV safety set to armed. Motors are enabled / running / can start. Ready to fly. Additional note: this flag is to be ignore when sent in the command MAV_CMD_DO_SET_MODE and MAV_CMD_COMPONENT_ARM_DISARM shall be used instead. The flag can still be used to report the armed state.</description>
-    </entry>
-    <entry value="64" name="MAV_MODE_FLAG_MANUAL_INPUT_ENABLED">
-      <description>0b01000000 remote control input is enabled.</description>
-    </entry>
-    <entry value="32" name="MAV_MODE_FLAG_HIL_ENABLED">
-      <description>0b00100000 hardware in the loop simulation. All motors / actuators are blocked, but internal software is full operational.</description>
-    </entry>
-    <entry value="16" name="MAV_MODE_FLAG_STABILIZE_ENABLED">
-      <description>0b00010000 system stabilizes electronically its attitude (and optionally position). It needs however further control inputs to move around.</description>
-    </entry>
-    <entry value="8" name="MAV_MODE_FLAG_GUIDED_ENABLED">
-      <description>0b00001000 guided mode enabled, system flies waypoints / mission items.</description>
-    </entry>
-    <entry value="4" name="MAV_MODE_FLAG_AUTO_ENABLED">
-      <description>0b00000100 autonomous mode enabled, system finds its own goal positions. Guided flag can be set or not, depends on the actual implementation.</description>
-    </entry>
-    <entry value="2" name="MAV_MODE_FLAG_TEST_ENABLED">
-      <description>0b00000010 system has a test mode enabled. This flag is intended for temporary system tests and should not be used for stable implementations.</description>
-    </entry>
-    <entry value="1" name="MAV_MODE_FLAG_CUSTOM_MODE_ENABLED">
-      <description>0b00000001 system-specific custom mode is enabled. When using this flag to enable a custom mode all other flags should be ignored.</description>
-    </entry>
-  </enum>
+      <entry value="8" name="UGV_COMP_MOTOR_REAR">
+        <description>0x08 Motor Controller (rear)</description>
+      </entry>
 
-  <enum name="UGV_COMP_BITMASK" bitmask="true">
-    <description>These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message.</description>
-    <entry value="1" name="UGV_COMP_COMP_COMPUTE">
-      <description>0x01 Atlas Compute</description>
-    </entry>
+      <entry value="16" name="UGV_COMP_BMS">
+        <description>0x10 Battery Management System (BMS)</description>
+      </entry>
 
-    <entry value="2" name="UGV_COMP_VCU">
-      <description>0x02 Vehicle Control Unit (VCU)</description>
-    </entry>
+      <entry value="32" name="UGV_COMP_PDU">
+        <description>0x20 Power Distribution Unit (PDU)</description>
+      </entry>
 
-    <entry value="4" name="UGV_COMP_MOTOR_FRONT">
-      <description>0x04 Motor Controller (front)</description>
-    </entry>
+      <entry value="64" name="UGV_COMP_INS">
+        <description>0x40 Inertial Navigation System (INS)</description>
+      </entry>
 
-    <entry value="8" name="UGV_COMP_MOTOR_REAR">
-      <description>0x08 Motor Controller (rear)</description>
-    </entry>
+      <entry value="128" name="UGV_COMP_GNSS">
+        <description>0x80 GNSS</description>
+      </entry>
 
-    <entry value="16" name="UGV_COMP_BMS">
-      <description>0x10 Battery Management System (BMS)</description>
-    </entry>
+      <entry value="256" name="UGV_COMP_ULTRASONIC">
+        <description>0x100 Ultrasonic sensors</description>
+      </entry>
 
-    <entry value="32" name="UGV_COMP_PDU">
-      <description>0x20 Power Distribution Unit (PDU)</description>
-    </entry>
+      <entry value="512" name="UGV_COMP_LIDAR">
+        <description>0x200 3D Lidar</description>
+      </entry>
 
-    <entry value="64" name="UGV_COMP_INS">
-      <description>0x40 Inertial Navigation System (INS)</description>
-    </entry>
+      <entry value="1024" name="UGV_COMP_DISPLAY">
+        <description>0x400 Display unit</description>
+      </entry>
 
-    <entry value="128" name="UGV_COMP_GNSS">
-      <description>0x80 GNSS</description>
-    </entry>
+      <entry value="2048" name="UGV_COMP_UHF_RADIO">
+        <description>0x800 UHF Radio link</description>
+      </entry>
 
-    <entry value="256" name="UGV_COMP_ULTRASONIC">
-      <description>0x100 Ultrasonic sensors</description>
-    </entry>
+      <entry value="4096" name="UGV_COMP_HAND_CTRL">
+        <description>0x1000 Hand Controller</description>
+      </entry>
 
-    <entry value="512" name="UGV_COMP_LIDAR">
-      <description>0x200 3D Lidar</description>
-    </entry>
+      <entry value="8192" name="UGV_COMP_GCS">
+        <description>0x2000 Ground Control Station (GCS)</description>
+      </entry>
 
-    <entry value="1024" name="UGV_COMP_DISPLAY">
-      <description>0x400 Display unit</description>
-    </entry>
+    </enum>
 
-    <entry value="2048" name="UGV_COMP_UHF_RADIO">
-      <description>0x800 UHF Radio link</description>
-    </entry>
+    <enum name="UGV_MOTOR_ERROR_BITMASK" bitmask="true">
+      <description>These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message.</description>
+      <entry value="1" name="MOTOR_OVERLOAD">
+        <description>0x01 Motor Overload</description>
+      </entry>
+      <entry value="2" name="MOTOR_OVERVTEMP">
+        <description>0x02 Motor Overtemperature</description>
+      </entry>
+      <entry value="4" name="MOTOR_OVER_SPEED">
+        <description>0x04 Motor Controller (left)</description>
+      </entry>
+      <entry value="8" name="MOTOR_STALLED">
+        <description>0x08 Motor Controller (right)</description>
+      </entry>
+      <entry value="16" name="MOTOR_PHASE_LOSS">
+        <description>0x10 Battery Management System (BMS)</description>
+      </entry>
+      <entry value="32" name="MOTOR_HALL_FAULT">
+        <description>0x20 Power Distribution Unit (PDU)</description>
+      </entry>
+      <entry value="64" name="MOTOR_ENCODER_FAULT">
+        <description>0x40 Display unit</description>
+      </entry>
+      <entry value="128" name="MOTOR_BRAKE_FAULT">
+        <description>0x80 UHF Radio link</description>
+      </entry>
+    </enum>
 
-    <entry value="4096" name="UGV_COMP_HAND_CTRL">
-      <description>0x1000 Hand Controller</description>
-    </entry>
+    <enum name="UGV_SENSOR_ERROR_BITMASK" bitmask="true">
+      <description>These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message.</description>
+      <entry value="1" name="BAT_UNDER_VOLTAGE">
+        <description>0x01 Battery Under Voltage</description>
+      </entry>
+      <entry value="2" name="BAT_OVER_CURRENT">
+        <description>0x02 Battery Over Current</description>
+      </entry>
+      <entry value="4" name="BAT_OVER_VOLTAGE">
+        <description>0x04 Battery Over Voltage</description>
+      </entry>
+      <entry value="8" name="BAT_OVER_TEMP">
+        <description>0x08 Battery Over Temperature</description>
+      </entry>
+    </enum>
 
-    <entry value="8192" name="UGV_COMP_GCS">
-      <description>0x2000 Ground Control Station (GCS)</description>
-    </entry>
+  </enums>
 
-  </enum>
+  <messages>
+    <message id="0" name="HEARTBEAT">
+      <description>The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot). This microservice is documented at https://mavlink.io/en/services/heartbeat.html</description>
+      <field type="uint8_t" name="type" enum="MAV_TYPE">Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type.</field>
+      <field type="uint8_t" name="autopilot" enum="MAV_AUTOPILOT">Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.</field>
+      <field type="uint8_t" name="base_mode" enum="MAV_MODE_FLAG">System mode bitmap.</field>
+      <field type="uint32_t" name="custom_mode">A bitfield for use for autopilot-specific flags</field>
+      <field type="uint8_t" name="system_status" enum="MAV_STATE">System status flag.</field>
+      <field type="uint8_t_mavlink_version" name="mavlink_version">MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version</field>
+    </message>
 
-  <enum name="UGV_MOTOR_ERROR_BITMASK" bitmask="true">
-    <description>These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message.</description>
-    <entry value="1" name="MOTOR_OVERLOAD">
-      <description>0x01 Motor Overload</description>
-    </entry>
-    <entry value="2" name="MOTOR_OVERVTEMP">
-      <description>0x02 Motor Overtemperature</description>
-    </entry>
-    <entry value="4" name="MOTOR_OVER_SPEED">
-      <description>0x04 Motor Controller (left)</description>
-    </entry>
-    <entry value="8" name="MOTOR_STALLED">
-      <description>0x08 Motor Controller (right)</description>
-    </entry>
-    <entry value="16" name="MOTOR_PHASE_LOSS">
-      <description>0x10 Battery Management System (BMS)</description>
-    </entry>
-    <entry value="32" name="MOTOR_HALL_FAULT">
-      <description>0x20 Power Distribution Unit (PDU)</description>
-    </entry>
-    <entry value="64" name="MOTOR_ENCODER_FAULT">
-      <description>0x40 Display unit</description>
-    </entry>
-    <entry value="128" name="MOTOR_BRAKE_FAULT">
-      <description>0x80 UHF Radio link</description>
-    </entry>
-  </enum>
+    <message id="2" name="SYSTEM_TIME">
+      <description>The system time is the time of the sender's master clock.
+        This can be emitted by flight controllers, onboard computers, or other components in the MAVLink network.
+        Components that are using a less reliable time source, such as a battery-backed real time clock, can choose to match their system clock to that of a system that indicates a more recent time.
+        This allows more broadly accurate date stamping of logs, and so on.
+        If precise time synchronization is needed then use TIMESYNC instead.</description>
+      <field type="uint64_t" name="time_unix_usec" units="us">Timestamp (UNIX epoch time).</field>
+      <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
+    </message>
 
-  <enum name="UGV_SENSOR_ERROR_BITMASK" bitmask="true">
-    <description>These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message.</description>
-    <entry value="1" name="BAT_UNDER_VOLTAGE">
-      <description>0x01 Battery Under Voltage</description>
-    </entry>
-    <entry value="2" name="BAT_OVER_CURRENT">
-      <description>0x02 Battery Over Current</description>
-    </entry>
-    <entry value="4" name="BAT_OVER_VOLTAGE">
-      <description>0x04 Battery Over Voltage</description>
-    </entry>
-    <entry value="8" name="BAT_OVER_TEMP">
-      <description>0x08 Battery Over Temperature</description>
-    </entry>
-  </enum>
+    <message id="69" name="MANUAL_CONTROL">
+      <description>Manual (joystick) control message.
+        This message represents movement axes and button using standard joystick axes nomenclature. Unused axes can be disabled and buttons states are transmitted as individual on/off bits of a bitmask. For more information see https://mavlink.io/en/services/manual_control.html</description>
+      <field type="uint8_t" name="target">The system to be controlled.</field>
+      <field type="int16_t" name="x" minValue="-1000" maxValue="1000" invalid="INT16_MAX">X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick and the pitch of a vehicle.</field>
+      <field type="int16_t" name="y" minValue="-1000" maxValue="1000" invalid="INT16_MAX">Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the roll of a vehicle.</field>
+      <field type="int16_t" name="z" minValue="-1000" maxValue="1000" invalid="INT16_MAX">Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust.</field>
+      <field type="int16_t" name="r" minValue="-1000" maxValue="1000" invalid="INT16_MAX">R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a twisting of the joystick, with clockwise being 1000 and counter-clockwise being -1000, and the yaw of a vehicle.</field>
+      <field type="uint16_t" name="push_buttons">A bitfield corresponding to the joystick buttons' 0-15 current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 1.</field>
+      <extensions/>
+      <field type="uint16_t" name="tristate_toggle_switches" enum="TRISTATE_TOGGLE_SWITCHES">A bitfield corresponding to the joystick buttons' 16-31 current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 16.</field>
+      <field type="uint8_t" name="enabled_extensions">Set bits to 1 to indicate which of the following extension fields contain valid data: bit 0: pitch, bit 1: roll, bit 2: aux1, bit 3: aux2, bit 4: aux3, bit 5: aux4, bit 6: aux5, bit 7: aux6</field>
+      <field type="int16_t" name="s" minValue="-1000" maxValue="1000">Pitch-only-axis, normalized to the range [-1000,1000]. Generally corresponds to pitch on vehicles with additional degrees of freedom. Valid if bit 0 of enabled_extensions field is set. Set to 0 if invalid.</field>
+      <field type="int16_t" name="t" minValue="-1000" maxValue="1000">Roll-only-axis, normalized to the range [-1000,1000]. Generally corresponds to roll on vehicles with additional degrees of freedom. Valid if bit 1 of enabled_extensions field is set. Set to 0 if invalid.</field>
+      <field type="int16_t" name="aux1" minValue="-1000" maxValue="1000">Aux continuous input field 1. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 2 of enabled_extensions field is set. 0 if bit 2 is unset.</field>
+      <field type="int16_t" name="aux2" minValue="-1000" maxValue="1000">Aux continuous input field 2. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 3 of enabled_extensions field is set. 0 if bit 3 is unset.</field>
+      <field type="int16_t" name="aux3" minValue="-1000" maxValue="1000">Aux continuous input field 3. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 4 of enabled_extensions field is set. 0 if bit 4 is unset.</field>
+      <field type="int16_t" name="aux4" minValue="-1000" maxValue="1000">Aux continuous input field 4. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 5 of enabled_extensions field is set. 0 if bit 5 is unset.</field>
+      <field type="int16_t" name="aux5" minValue="-1000" maxValue="1000">Aux continuous input field 5. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 6 of enabled_extensions field is set. 0 if bit 6 is unset.</field>
+      <field type="int16_t" name="aux6" minValue="-1000" maxValue="1000">Aux continuous input field 6. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 7 of enabled_extensions field is set. 0 if bit 7 is unset.</field>
+    </message>
 
-</enums>
+    <message id="76" name="COMMAND_LONG">
+      <description>Send a command with up to seven parameters to the MAV. COMMAND_INT is generally preferred when sending MAV_CMD commands that include positional information; it offers higher precision and allows the MAV_FRAME to be specified (which may otherwise be ambiguous, particularly for altitude). The command microservice is documented at https://mavlink.io/en/services/command.html</description>
+      <field type="uint8_t" name="target_system">System which should execute the command</field>
+      <field type="uint8_t" name="target_component">Component which should execute the command, 0 for all components</field>
+      <field type="uint16_t" name="command" enum="MAV_CMD">Command ID (of command to send).</field>
+      <field type="uint8_t" name="confirmation">0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)</field>
+      <field type="float" name="param1" invalid="NaN">Parameter 1 (for the specific command).</field>
+      <field type="float" name="param2" invalid="NaN">Parameter 2 (for the specific command).</field>
+      <field type="float" name="param3" invalid="NaN">Parameter 3 (for the specific command).</field>
+      <field type="float" name="param4" invalid="NaN">Parameter 4 (for the specific command).</field>
+      <field type="float" name="param5" invalid="NaN">Parameter 5 (for the specific command).</field>
+      <field type="float" name="param6" invalid="NaN">Parameter 6 (for the specific command).</field>
+      <field type="float" name="param7" invalid="NaN">Parameter 7 (for the specific command).</field>
+    </message>
 
-<messages>
-  <message id="0" name="HEARTBEAT">
-    <description>The heartbeat message shows that a system or component is present and responding. The type and autopilot fields (along with the message component id), allow the receiving system to treat further messages from this system appropriately (e.g. by laying out the user interface based on the autopilot). This microservice is documented at https://mavlink.io/en/services/heartbeat.html</description>
-    <field type="uint8_t" name="type" enum="MAV_TYPE">Vehicle or component type. For a flight controller component the vehicle type (quadrotor, helicopter, etc.). For other components the component type (e.g. camera, gimbal, etc.). This should be used in preference to component id for identifying the component type.</field>
-    <field type="uint8_t" name="autopilot" enum="MAV_AUTOPILOT">Autopilot type / class. Use MAV_AUTOPILOT_INVALID for components that are not flight controllers.</field>
-    <field type="uint8_t" name="base_mode" enum="MAV_MODE_FLAG">System mode bitmap.</field>
-    <field type="uint32_t" name="custom_mode">A bitfield for use for autopilot-specific flags</field>
-    <field type="uint8_t" name="system_status" enum="MAV_STATE">System status flag.</field>
-    <field type="uint8_t_mavlink_version" name="mavlink_version">MAVLink version, not writable by user, gets added by protocol because of magic data type: uint8_t_mavlink_version</field>
-  </message>
+    <message id="77" name="COMMAND_ACK">
+      <description>Report status of a command. Includes feedback whether the command was executed. The command microservice is documented at https://mavlink.io/en/services/command.html</description>
+      <field type="uint16_t" name="command" enum="MAV_CMD">Command ID (of acknowledged command).</field>
+      <field type="uint8_t" name="result" enum="MAV_RESULT">Result of command.</field>
+      <extensions/>
+      <field type="uint8_t" name="progress" invalid="UINT8_MAX" units="%">The progress percentage when result is MAV_RESULT_IN_PROGRESS. Values: [0-100], or UINT8_MAX if the progress is unknown.</field>
+      <field type="int32_t" name="result_param2">Additional result information. Can be set with a command-specific enum containing command-specific error reasons for why the command might be denied. If used, the associated enum must be documented in the corresponding MAV_CMD (this enum should have a 0 value to indicate "unused" or "unknown").</field>
+      <field type="uint8_t" name="target_system">System ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
+      <field type="uint8_t" name="target_component">Component ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
+    </message>
 
-  <message id="2" name="SYSTEM_TIME">
-    <description>The system time is the time of the sender's master clock.
-      This can be emitted by flight controllers, onboard computers, or other components in the MAVLink network.
-      Components that are using a less reliable time source, such as a battery-backed real time clock, can choose to match their system clock to that of a system that indicates a more recent time.
-      This allows more broadly accurate date stamping of logs, and so on.
-      If precise time synchronization is needed then use TIMESYNC instead.</description>
-    <field type="uint64_t" name="time_unix_usec" units="us">Timestamp (UNIX epoch time).</field>
-    <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
-  </message>
+    <message id="111" name="TIMESYNC">
+      <description>
+        Time synchronization message.
+        The message is used for both timesync requests and responses.
+        The request is sent with `ts1=syncing component timestamp` and `tc1=0`, and may be broadcast or targeted to a specific system/component.
+        The response is sent with `ts1=syncing component timestamp` (mirror back unchanged), and `tc1=responding component timestamp`, with the `target_system` and `target_component` set to ids of the original request.
+        Systems can determine if they are receiving a request or response based on the value of `tc`.
+        If the response has `target_system==target_component==0` the remote system has not been updated to use the component IDs and cannot reliably timesync; the requester may report an error.
+        Timestamps are UNIX Epoch time or time since system boot in nanoseconds (the timestamp format can be inferred by checking for the magnitude of the number; generally it doesn't matter as only the offset is used).
+        The message sequence is repeated numerous times with results being filtered/averaged to estimate the offset.
+        See also: https://mavlink.io/en/services/timesync.html.
+      </description>
+      <field type="int64_t" name="tc1" units="ns">Time sync timestamp 1. Syncing: 0. Responding: Timestamp of responding component.</field>
+      <field type="int64_t" name="ts1" units="ns">Time sync timestamp 2. Timestamp of syncing component (mirrored in response).</field>
+      <extensions/>
+      <field type="uint8_t" name="target_system">Target system id. Request: 0 (broadcast) or id of specific system. Response must contain system id of the requesting component.</field>
+      <field type="uint8_t" name="target_component">Target component id. Request: 0 (broadcast) or id of specific component. Response must contain component id of the requesting component.</field>
+    </message>
 
-  <message id="69" name="MANUAL_CONTROL">
-    <description>Manual (joystick) control message.
-      This message represents movement axes and button using standard joystick axes nomenclature. Unused axes can be disabled and buttons states are transmitted as individual on/off bits of a bitmask. For more information see https://mavlink.io/en/services/manual_control.html</description>
-    <field type="uint8_t" name="target">The system to be controlled.</field>
-    <field type="int16_t" name="x" minValue="-1000" maxValue="1000" invalid="INT16_MAX">X-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to forward(1000)-backward(-1000) movement on a joystick and the pitch of a vehicle.</field>
-    <field type="int16_t" name="y" minValue="-1000" maxValue="1000" invalid="INT16_MAX">Y-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to left(-1000)-right(1000) movement on a joystick and the roll of a vehicle.</field>
-    <field type="int16_t" name="z" minValue="-1000" maxValue="1000" invalid="INT16_MAX">Z-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a separate slider movement with maximum being 1000 and minimum being -1000 on a joystick and the thrust of a vehicle. Positive values are positive thrust, negative values are negative thrust.</field>
-    <field type="int16_t" name="r" minValue="-1000" maxValue="1000" invalid="INT16_MAX">R-axis, normalized to the range [-1000,1000]. A value of INT16_MAX indicates that this axis is invalid. Generally corresponds to a twisting of the joystick, with clockwise being 1000 and counter-clockwise being -1000, and the yaw of a vehicle.</field>
-    <field type="uint16_t" name="push_buttons">A bitfield corresponding to the joystick buttons' 0-15 current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 1.</field>
-    <extensions/>
-    <field type="uint16_t" name="tristate_toggle_switches" enum="TRISTATE_TOGGLE_SWITCHES">A bitfield corresponding to the joystick buttons' 16-31 current state, 1 for pressed, 0 for released. The lowest bit corresponds to Button 16.</field>
-    <field type="uint8_t" name="enabled_extensions">Set bits to 1 to indicate which of the following extension fields contain valid data: bit 0: pitch, bit 1: roll, bit 2: aux1, bit 3: aux2, bit 4: aux3, bit 5: aux4, bit 6: aux5, bit 7: aux6</field>
-    <field type="int16_t" name="s" minValue="-1000" maxValue="1000">Pitch-only-axis, normalized to the range [-1000,1000]. Generally corresponds to pitch on vehicles with additional degrees of freedom. Valid if bit 0 of enabled_extensions field is set. Set to 0 if invalid.</field>
-    <field type="int16_t" name="t" minValue="-1000" maxValue="1000">Roll-only-axis, normalized to the range [-1000,1000]. Generally corresponds to roll on vehicles with additional degrees of freedom. Valid if bit 1 of enabled_extensions field is set. Set to 0 if invalid.</field>
-    <field type="int16_t" name="aux1" minValue="-1000" maxValue="1000">Aux continuous input field 1. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 2 of enabled_extensions field is set. 0 if bit 2 is unset.</field>
-    <field type="int16_t" name="aux2" minValue="-1000" maxValue="1000">Aux continuous input field 2. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 3 of enabled_extensions field is set. 0 if bit 3 is unset.</field>
-    <field type="int16_t" name="aux3" minValue="-1000" maxValue="1000">Aux continuous input field 3. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 4 of enabled_extensions field is set. 0 if bit 4 is unset.</field>
-    <field type="int16_t" name="aux4" minValue="-1000" maxValue="1000">Aux continuous input field 4. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 5 of enabled_extensions field is set. 0 if bit 5 is unset.</field>
-    <field type="int16_t" name="aux5" minValue="-1000" maxValue="1000">Aux continuous input field 5. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 6 of enabled_extensions field is set. 0 if bit 6 is unset.</field>
-    <field type="int16_t" name="aux6" minValue="-1000" maxValue="1000">Aux continuous input field 6. Normalized in the range [-1000,1000]. Purpose defined by recipient. Valid data if bit 7 of enabled_extensions field is set. 0 if bit 7 is unset.</field>
-  </message>
+    <message id="50001" name="UGV_SYSTEM_INFO">
+      <description>UGV MASTER HEALTH</description>
 
-  <message id="76" name="COMMAND_LONG">
-    <description>Send a command with up to seven parameters to the MAV. COMMAND_INT is generally preferred when sending MAV_CMD commands that include positional information; it offers higher precision and allows the MAV_FRAME to be specified (which may otherwise be ambiguous, particularly for altitude). The command microservice is documented at https://mavlink.io/en/services/command.html</description>
-    <field type="uint8_t" name="target_system">System which should execute the command</field>
-    <field type="uint8_t" name="target_component">Component which should execute the command, 0 for all components</field>
-    <field type="uint16_t" name="command" enum="MAV_CMD">Command ID (of command to send).</field>
-    <field type="uint8_t" name="confirmation">0: First transmission of this command. 1-255: Confirmation transmissions (e.g. for kill command)</field>
-    <field type="float" name="param1" invalid="NaN">Parameter 1 (for the specific command).</field>
-    <field type="float" name="param2" invalid="NaN">Parameter 2 (for the specific command).</field>
-    <field type="float" name="param3" invalid="NaN">Parameter 3 (for the specific command).</field>
-    <field type="float" name="param4" invalid="NaN">Parameter 4 (for the specific command).</field>
-    <field type="float" name="param5" invalid="NaN">Parameter 5 (for the specific command).</field>
-    <field type="float" name="param6" invalid="NaN">Parameter 6 (for the specific command).</field>
-    <field type="float" name="param7" invalid="NaN">Parameter 7 (for the specific command).</field>
-  </message>
+      <field type="uint32_t" name="ugv_subsystem_present" enum="UGV_COMP_BITMASK" print_format="0x%04x">subsystem present</field>
+      <field type="uint32_t" name="ugv_subsystem_enabled" enum="UGV_COMP_BITMASK" print_format="0x%04x">subsystem enabled</field>
+      <field type="uint32_t" name="ugv_subsystem_health" enum="UGV_COMP_BITMASK" print_format="0x%04x">subsystem health</field>
+      <field type="uint16_t" name="compute_load">Compute load (d%)</field>
+      <field type="uint16_t" name="main_voltage">System Voltage (mV)</field>
+      <field type="int16_t" name="main_current">System Current (cA)</field>
+      <field type="uint16_t" name="pdu_12v_voltage">PDU 12V Voltage (mV)</field>
+      <field type="int8_t" name="battery_remaining">Remaining Battery (%)</field>
+      <field type="uint16_t" name="drop_rate_comm">Drop Rate (c%)</field>
+      <field type="uint16_t" name="vcu_fault_errors">VCU Fault Errors Count</field>
+      <field type="uint16_t" name="front_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Front Motor Errors Count</field>
+      <field type="uint16_t" name="rear_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Rear Motor Errors Count</field>
+      <field type="uint16_t" name="sensor_bus_errors" enum="UGV_SENSOR_ERROR_BITMASK">Sensor Bus Errors Count</field>
+    </message>
 
-  <message id="77" name="COMMAND_ACK">
-    <description>Report status of a command. Includes feedback whether the command was executed. The command microservice is documented at https://mavlink.io/en/services/command.html</description>
-    <field type="uint16_t" name="command" enum="MAV_CMD">Command ID (of acknowledged command).</field>
-    <field type="uint8_t" name="result" enum="MAV_RESULT">Result of command.</field>
-    <extensions/>
-    <field type="uint8_t" name="progress" invalid="UINT8_MAX" units="%">The progress percentage when result is MAV_RESULT_IN_PROGRESS. Values: [0-100], or UINT8_MAX if the progress is unknown.</field>
-    <field type="int32_t" name="result_param2">Additional result information. Can be set with a command-specific enum containing command-specific error reasons for why the command might be denied. If used, the associated enum must be documented in the corresponding MAV_CMD (this enum should have a 0 value to indicate "unused" or "unknown").</field>
-    <field type="uint8_t" name="target_system">System ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
-    <field type="uint8_t" name="target_component">Component ID of the target recipient. This is the ID of the system that sent the command for which this COMMAND_ACK is an acknowledgement.</field>
-  </message>
+    <message id="50002" name="UGV_COMPONENT_VERSION">
+      <description>Describes the current software version along with checksum of the particular component of UGV system.</description>
+      <field type="uint32_t" name="software_version">Software version. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint8_t[32]" name="checksum">SHA 256 Checksum of the build</field>
+      <field type="uint8_t" name="target_system">Target system id. Request: 0 (broadcast) or id of specific system. Response must contain system id of the requesting component.</field>
+      <field type="uint8_t" name="target_component">Target component id. Request: 0 (broadcast) or id of specific component. Response must contain component id of the requesting component.</field>
+    </message>
 
-  <message id="111" name="TIMESYNC">
-    <description>
-      Time synchronization message.
-      The message is used for both timesync requests and responses.
-      The request is sent with `ts1=syncing component timestamp` and `tc1=0`, and may be broadcast or targeted to a specific system/component.
-      The response is sent with `ts1=syncing component timestamp` (mirror back unchanged), and `tc1=responding component timestamp`, with the `target_system` and `target_component` set to ids of the original request.
-      Systems can determine if they are receiving a request or response based on the value of `tc`.
-      If the response has `target_system==target_component==0` the remote system has not been updated to use the component IDs and cannot reliably timesync; the requester may report an error.
-      Timestamps are UNIX Epoch time or time since system boot in nanoseconds (the timestamp format can be inferred by checking for the magnitude of the number; generally it doesn't matter as only the offset is used).
-      The message sequence is repeated numerous times with results being filtered/averaged to estimate the offset.
-      See also: https://mavlink.io/en/services/timesync.html.
-    </description>
-    <field type="int64_t" name="tc1" units="ns">Time sync timestamp 1. Syncing: 0. Responding: Timestamp of responding component.</field>
-    <field type="int64_t" name="ts1" units="ns">Time sync timestamp 2. Timestamp of syncing component (mirrored in response).</field>
-    <extensions/>
-    <field type="uint8_t" name="target_system">Target system id. Request: 0 (broadcast) or id of specific system. Response must contain system id of the requesting component.</field>
-    <field type="uint8_t" name="target_component">Target component id. Request: 0 (broadcast) or id of specific component. Response must contain component id of the requesting component.</field>
-  </message>
+    <message id="50003" name="UGV_SUBSYSTEM_VERSION">
+      <description>Describes the current software version along with checksum of whole UGV system</description>
+      <field type="uint8_t" name="type">Type of the subsystem software.</field>
+      <field type="char[4]" name="component1_sw">Software version of component 1. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[32]" name="component1_checksum">Software checksum of component 1. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[4]" name="component2_sw">Software version of component 2. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[32]" name="component2_checksum">Software checksum of component 2. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[4]" name="component3_sw">Software version of component 3. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[32]" name="component3_checksum">Software checksum of component 3. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[4]" name="component4_sw">Software version of component 4. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[32]" name="component4_checksum">Software checksum of component 4. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[4]" name="component5_sw">Software version of component 5. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="char[32]" name="component5_checksum">Software checksum of component 5. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+    </message>
 
-  <message id="50001" name="UGV_SYSTEM_INFO">
-    <description>UGV MASTER HEALTH</description>
-
-    <field type="uint32_t" name="ugv_subsystem_present" enum="UGV_COMP_BITMASK" print_format="0x%04x">subsystem present</field>
-    <field type="uint32_t" name="ugv_subsystem_enabled" enum="UGV_COMP_BITMASK" print_format="0x%04x">subsystem enabled</field>
-    <field type="uint32_t" name="ugv_subsystem_health" enum="UGV_COMP_BITMASK" print_format="0x%04x">subsystem health</field>
-    <field type="uint16_t" name="compute_load">Compute load (d%)</field>
-    <field type="uint16_t" name="main_voltage">System Voltage (mV)</field>
-    <field type="int16_t" name="main_current">System Current (cA)</field>
-    <field type="uint16_t" name="pdu_12v_voltage">PDU 12V Voltage (mV)</field>
-    <field type="int8_t" name="battery_remaining">Remaining Battery (%)</field>
-    <field type="uint16_t" name="drop_rate_comm">Drop Rate (c%)</field>
-    <field type="uint16_t" name="vcu_fault_errors">VCU Fault Errors Count</field>
-    <field type="uint16_t" name="front_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Front Motor Errors Count</field>
-    <field type="uint16_t" name="rear_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Rear Motor Errors Count</field>
-    <field type="uint16_t" name="sensor_bus_errors" enum="UGV_SENSOR_ERROR_BITMASK">Sensor Bus Errors Count</field>
-  </message>
-
-  <message id="50002" name="UGV_COMPONENT_VERSION">
-    <description>Describes the current software version along with checksum of the particular component of UGV system.</description>
-    <field type="uint32_t" name="software_version">Software version. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="uint8_t[32]" name="checksum">SHA 256 Checksum of the build</field>
-    <field type="uint8_t" name="target_system">Target system id. Request: 0 (broadcast) or id of specific system. Response must contain system id of the requesting component.</field>
-    <field type="uint8_t" name="target_component">Target component id. Request: 0 (broadcast) or id of specific component. Response must contain component id of the requesting component.</field>
-  </message>
-
-  <message id="50003" name="UGV_SUBSYSTEM_VERSION">
-    <description>Describes the current software version along with checksum of whole UGV system</description>
-    <field type="uint8_t" name="type">Type of the subsystem software.</field>
-    <field type="char[4]" name="component1_sw">Software version of component 1. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="char[32]" name="component1_checksum">Software checksum of component 1. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="char[4]" name="component2_sw">Software version of component 2. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="char[32]" name="component2_checksum">Software checksum of component 2. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="char[4]" name="component3_sw">Software version of component 3. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="char[32]" name="component3_checksum">Software checksum of component 3. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="char[4]" name="component4_sw">Software version of component 4. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="char[32]" name="component4_checksum">Software checksum of component 4. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="char[4]" name="component5_sw">Software version of component 5. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-    <field type="char[32]" name="component5_checksum">Software checksum of component 5. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-  </message>
-
-</messages>
+  </messages>
 </mavlink>
