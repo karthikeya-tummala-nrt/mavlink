@@ -5,6 +5,9 @@
   <enums>
 
     <enum name="MAV_TYPE">
+      <entry value="0" name="MAV_TYPE_GENERIC">
+        <description>Generic micro air vehicle</description>
+      </entry>
       <description>MAVLINK component type reported in HEARTBEAT message. Flight controllers must report the type of the vehicle on which they are mounted (e.g. MAV_TYPE_OCTOROTOR). All other components must report a value appropriate for their type (e.g. a camera must use MAV_TYPE_CAMERA).</description>
       <entry value="18" name="MAV_TYPE_ONBOARD_CONTROLLER">
         <description>Onboard companion controller</description>
@@ -13,6 +16,10 @@
 
     <enum name="MAV_AUTOPILOT">
       <description>Micro air vehicle / autopilot classes. This identifies the individual model.</description>
+      <entry value="0" name="MAV_AUTOPILOT_GENERIC">
+        <description>Generic autopilot, full support for everything</description>
+      </entry>
+
       <entry value="8" name="MAV_AUTOPILOT_INVALID">
         <description>No valid autopilot, e.g. a GCS or other MAVLink component</description>
       </entry>
@@ -26,6 +33,9 @@
     </enum>
 
     <enum name="MAV_STATE">
+      <entry value="0" name="MAV_STATE_UNINIT">
+        <description>Uninitialized system, state is unknown.</description>
+      </entry>
       <entry value="3" name="MAV_STATE_STANDBY">
         <description>System is grounded and on standby. It can be launched any time.</description>
       </entry>
