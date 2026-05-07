@@ -104,7 +104,7 @@
       </entry>
     </enum>
 
-    <enum name="MAV_BOOL" bitmask="true">
+    <enum name="MAV_BOOL">
       <description>Enum used to indicate true or false (also: success or failure, enabled or disabled, active or inactive).</description>
       <entry value="0" name="MAV_BOOL_FALSE">
         <description>False.</description>
@@ -184,12 +184,12 @@
         <description>0x02 Vehicle Control Unit (VCU)</description>
       </entry>
 
-      <entry value="4" name="UGV_COMP_MOTOR_FRONT">
-        <description>0x04 Motor Controller (front)</description>
+      <entry value="4" name="UGV_COMP_LEFT_MOTOR">
+        <description>0x04 Motor Controller (left)</description>
       </entry>
 
-      <entry value="8" name="UGV_COMP_MOTOR_REAR">
-        <description>0x08 Motor Controller (rear)</description>
+      <entry value="8" name="UGV_COMP_RIGHT_MOTOR">
+        <description>0x08 Motor Controller (right)</description>
       </entry>
 
       <entry value="16" name="UGV_COMP_BMS">
@@ -200,36 +200,20 @@
         <description>0x20 Power Distribution Unit (PDU)</description>
       </entry>
 
-      <entry value="64" name="UGV_COMP_INS">
-        <description>0x40 Inertial Navigation System (INS)</description>
+      <entry value="64" name="UGV_COMP_UHF_RADIO">
+        <description>0x40 UHF radio</description>
       </entry>
 
-      <entry value="128" name="UGV_COMP_GNSS">
-        <description>0x80 GNSS</description>
+      <entry value="128" name="UGV_COMP_DISPLAY">
+        <description>0x80 Display</description>
       </entry>
 
-      <entry value="256" name="UGV_COMP_ULTRASONIC">
-        <description>0x100 Ultrasonic sensors</description>
+      <entry value="256" name="UGV_COMP_HAND_CTRL">
+        <description>0x100 Hand controller</description>
       </entry>
 
-      <entry value="512" name="UGV_COMP_LIDAR">
-        <description>0x200 3D Lidar</description>
-      </entry>
-
-      <entry value="1024" name="UGV_COMP_DISPLAY">
-        <description>0x400 Display unit</description>
-      </entry>
-
-      <entry value="2048" name="UGV_COMP_UHF_RADIO">
-        <description>0x800 UHF Radio link</description>
-      </entry>
-
-      <entry value="4096" name="UGV_COMP_HAND_CTRL">
-        <description>0x1000 Hand Controller</description>
-      </entry>
-
-      <entry value="8192" name="UGV_COMP_GCS">
-        <description>0x2000 Ground Control Station (GCS)</description>
+      <entry value="512" name="UGV_COMP_GCS">
+        <description>0x200 Ground Control Station (GCS)</description>
       </entry>
 
     </enum>
@@ -239,7 +223,7 @@
       <entry value="1" name="MOTOR_OVERLOAD">
         <description>0x01 Motor Overload</description>
       </entry>
-      <entry value="2" name="MOTOR_OVERVTEMP">
+      <entry value="2" name="MOTOR_OVER_TEMP">
         <description>0x02 Motor Overtemperature</description>
       </entry>
       <entry value="4" name="MOTOR_OVER_SPEED">
@@ -261,6 +245,45 @@
         <description>0x80 UHF Radio link</description>
       </entry>
     </enum>
+
+
+    <enum name="UGV_MAIN_MODE">
+      <description>Operator mode in which the UGV operates in. Mode A signifies hand controller, Mode B signfies GCS</description>
+      <entry value="1" name="MODE_A">
+        <description>Mode A, hand controller</description>
+      </entry>
+      <entry value="2" name="MODE_B">
+        <description>Mode B, GCS</description>
+      </entry>
+    </enum>
+
+    <enum name="UGV_SUB_MODE">
+      <description>Operator submode in which the UGV operates in.</description>
+      <entry value="0" name="NONE">
+        <description>no active submode</description>
+      </entry>
+      <entry value="10" name="HOLD">
+        <description>Hold submode, used when UGV is temporarily in halt.</description>
+      </entry>
+    </enum>
+
+
+    <enum name="MODE_CHANGE_REASON">
+      <description>Reason for sub-mode change.</description>
+      <entry value="0" name="GCS_COMMAND">
+        <description>submode changed due to GCS command</description>
+      </entry>
+      <entry value="1" name="FAILSAFE">
+        <description>submode changed due to activation of failsafe</description>
+      </entry>
+      <entry value="2" name="SENSOR_FAULT">
+        <description>submode changed due to sensor fault</description>
+      </entry>
+      <entry value="3" name="COMM_LOSS">
+        <description>submode change due to loss of communication</description>
+      </entry>
+    </enum>
+
 
     <enum name="UGV_SENSOR_ERROR_BITMASK" bitmask="true">
       <description>These encode the sub systems whose status is sent as part of the UGV_MASTER_HEALTH message.</description>
@@ -377,13 +400,22 @@
       <field type="uint16_t" name="compute_load">Compute load (d%)</field>
       <field type="uint16_t" name="main_voltage">System Voltage (mV)</field>
       <field type="int16_t" name="main_current">System Current (cA)</field>
-      <field type="uint16_t" name="pdu_12v_voltage">PDU 12V Voltage (mV)</field>
       <field type="int8_t" name="battery_remaining">Remaining Battery (%)</field>
-      <field type="uint16_t" name="drop_rate_comm">Drop Rate (c%)</field>
       <field type="uint16_t" name="vcu_fault_errors">VCU Fault Errors Count</field>
-      <field type="uint16_t" name="front_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Front Motor Errors Count</field>
-      <field type="uint16_t" name="rear_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Rear Motor Errors Count</field>
-      <field type="uint16_t" name="sensor_bus_errors" enum="UGV_SENSOR_ERROR_BITMASK">Sensor Bus Errors Count</field>
+      <field type="uint16_t" name="drop_rate_comm">Drop Rate (c%)</field>
+      
+      <field type="uint16_t" name="left_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Left Motor Errors Count</field>
+      <field type="uint16_t" name="right_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Right Motor Errors Count</field>
+
+      <field type="uint16_t" name="sensor_bus_errors" enum="UGV_SENSOR_ERROR_BITMASK">Bitmask indicating BMS errors</field>
+
+      <field type="uint8_t" name="main_mode" enum="UGV_MAIN_MODE">Current active main mode ID</field>
+      <field type="uint8_t" name="sub_mode" enum="UGV_SUB_MODE">current active sub mode ID</field>
+      <field type="uint8_t" name="intended_main_mode" enum="UGV_MAIN_MODE"> Last main mode commanded by GCS via COMMAND_LONG </field>
+      <field type="uint8_t" name="intended_sub_mode" enum="UGV_SUB_MODE">Last sub mode commanded by GCS via COMMAND_LONG</field>
+      <field type="uint8_t" name="mode_change_reason" enum="MODE_CHANGE_REASON">Reason for last mode change</field>
+
+      
     </message>
 
     <message id="50002" name="UGV_COMPONENT_VERSION">
