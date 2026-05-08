@@ -429,16 +429,16 @@
     <message id="50003" name="UGV_SUBSYSTEM_VERSION">
       <description>Describes the current software version along with checksum of whole UGV system</description>
       <field type="uint8_t" name="type">Type of the subsystem software.</field>
-      <field type="char[4]" name="component1_sw">Software version of component 1. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-      <field type="char[32]" name="component1_checksum">Software checksum of component 1. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-      <field type="char[4]" name="component2_sw">Software version of component 2. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-      <field type="char[32]" name="component2_checksum">Software checksum of component 2. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-      <field type="char[4]" name="component3_sw">Software version of component 3. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-      <field type="char[32]" name="component3_checksum">Software checksum of component 3. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-      <field type="char[4]" name="component4_sw">Software version of component 4. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-      <field type="char[32]" name="component4_checksum">Software checksum of component 4. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-      <field type="char[4]" name="component5_sw">Software version of component 5. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
-      <field type="char[32]" name="component5_checksum">Software checksum of component 5. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint32_t" name="component1_sw">Software version of component 1. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint8_t[32]" name="component1_checksum">Software checksum of component 1. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint32_t" name="component2_sw">Software version of component 2. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint8_t[32]" name="component2_checksum">Software checksum of component 2. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint32_t" name="component3_sw">Software version of component 3. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint8_t[32]" name="component3_checksum">Software checksum of component 3. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint32_t" name="component4_sw">Software version of component 4. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint8_t[32]" name="component4_checksum">Software checksum of component 4. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint32_t" name="component5_sw">Software version of component 5. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+      <field type="uint8_t[32]" name="component5_checksum">Software checksum of component 5. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
     </message>
 
   </messages>
