@@ -485,7 +485,7 @@
         Last sub mode commanded by GCS.
       </field>
 
-      <field type="uint8_t" name="mode_change_reason" enum="UGV_MODE_CHANGE_REASON">
+      <field type="uint8_t" name="mode_change_reason" enum="MODE_CHANGE_REASON">
         Reason for last mode transition.
       </field>
 
