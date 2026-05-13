@@ -445,16 +445,50 @@
         </field>
 
         <!-- BYTE 11 -->
-        <field type="uint8_t" name="subsystem_health_2" enum="UGV_HEALTH_STATE">
-            Packed subsystem health information.
+      <field type="uint8_t" name="subsystem_health_2" enum="UGV_HEALTH_STATE">
+        Bit 0-1 : LV PDU
+        Bit 2-3 : DC-DC 48V to 12V
+        Bit 4-5 : DC-DC 12V to 5V
+        Bit 6-7 : VCU
+      </field>
 
-            Bit 0-1 : LV PDU Health
+      <!-- BYTE 12 -->
+      <field type="uint8_t" name="subsystem_health_3" enum="UGV_HEALTH_STATE">
+        Bit 0-1 : Front Left Motor
+        Bit 2-3 : Front Right Motor
+        Bit 4-5 : Rear Left Motor
+        Bit 6-7 : Rear Right Motor
+      </field>
 
-            0x01 = No communication
-            0x10 = Communicating and healthy
-            0x11 = Communicating and unhealthy
-            0x00 = Reserved
-        </field>
+      <!-- BYTE 13 -->
+      <field type="uint8_t" name="subsystem_health_4" enum="UGV_HEALTH_STATE">
+        Bit 0-1 : UHF Radio
+        Bit 2-3 : LBAND Radio
+        Bit 4-5 : Compute
+        Bit 6-7 : Reserved
+      </field>
+
+      <!-- MODES -->
+      <field type="uint8_t" name="main_mode" enum="UGV_MAIN_MODE">
+        Current active main mode.
+      </field>
+
+      <field type="uint8_t" name="sub_mode" enum="UGV_SUB_MODE">
+        Current active sub mode.
+      </field>
+
+      <field type="uint8_t" name="intended_main_mode" enum="UGV_MAIN_MODE">
+        Last main mode commanded by GCS.
+      </field>
+
+      <field type="uint8_t" name="intended_sub_mode" enum="UGV_SUB_MODE">
+        Last sub mode commanded by GCS.
+      </field>
+
+      <field type="uint8_t" name="mode_change_reason" enum="UGV_MODE_CHANGE_REASON">
+        Reason for last mode transition.
+      </field>
+
     </message>
 
     <message id="50002" name="UGV_COMPONENT_VERSION">
