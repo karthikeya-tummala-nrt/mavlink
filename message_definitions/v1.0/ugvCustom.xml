@@ -301,6 +301,30 @@
       </entry>
     </enum>
 
+    <!-- HEALTH STATE ENUM -->
+    <enum name="UGV_HEALTH_STATE">
+        <description>
+            Generic subsystem communication and health status.
+            Used for motor controllers, batteries, PDUs, and other subsystems.
+        </description>
+
+        <entry value="0" name="RESERVED_STATE">
+            <description>Reserved state.</description>
+        </entry>
+
+        <entry value="1" name="NO_COMMUNICATION_STATE">
+            <description>No communication with subsystem.</description>
+        </entry>
+
+        <entry value="2" name="COMMUNICATING_HEALTHY_STATE">
+            <description>Subsystem communicating and healthy.</description>
+        </entry>
+
+        <entry value="3" name="FAULT_STATE">
+            <description>Subsystem communicating but unhealthy. Fault present.</description>
+        </entry>
+    </enum>
+
   </enums>
 
   <messages>
@@ -399,31 +423,38 @@
       <field type="uint8_t" name="target_component">Target component id. Request: 0 (broadcast) or id of specific component. Response must contain component id of the requesting component.</field>
     </message>
 
+    <!-- UGV SYSTEM INFO MESSAGE -->
     <message id="50001" name="UGV_SYSTEM_INFO">
-      <description>UGV MASTER HEALTH</description>
+        <description>
+            Reports subsystem communication and health status of the UGV platform.
+            Each subsystem uses 2-bit encoding:
+            0x01 = No communication
+            0x10 = Communicating and healthy
+            0x11 = Communicating and unhealthy (fault present)
+            0x00 = Reserved
+        </description>
 
-      <field type="uint32_t" name="ugv_subsystem_present" enum="UGV_COMP_BITMASK" print_format="0x%04x">subsystem present</field>
-      <field type="uint32_t" name="ugv_subsystem_enabled" enum="UGV_COMP_BITMASK" print_format="0x%04x">subsystem enabled</field>
-      <field type="uint32_t" name="ugv_subsystem_health" enum="UGV_COMP_BITMASK" print_format="0x%04x">subsystem health</field>
-      <field type="uint16_t" name="compute_load">Compute load (d%)</field>
-      <field type="uint16_t" name="main_voltage">System Voltage (mV)</field>
-      <field type="int16_t" name="main_current">System Current (cA)</field>
-      <field type="int8_t" name="battery_remaining">Remaining Battery (%)</field>
-      <field type="uint16_t" name="vcu_fault_errors">VCU Fault Errors Count</field>
-      <field type="uint16_t" name="drop_rate_comm">Drop Rate (c%)</field>
-      
-      <field type="uint16_t" name="left_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Left Motor Errors Count</field>
-      <field type="uint16_t" name="right_motor_errors" enum="UGV_MOTOR_ERROR_BITMASK">Right Motor Errors Count</field>
+        <!-- BYTE 10 -->
+        <field type="uint8_t" name="subsystem_health_1" enum="UGV_HEALTH_STATE">
+            Packed subsystem health information.
 
-      <field type="uint16_t" name="sensor_bus_errors" enum="UGV_SENSOR_ERROR_BITMASK">Bitmask indicating BMS errors</field>
+            Bit 0-1 : Left Motor Controller Health
+            Bit 2-3 : Right Motor Controller Health
+            Bit 4-5 : HV Battery Health
+            Bit 6-7 : LV Battery Health
+        </field>
 
-      <field type="uint8_t" name="main_mode" enum="UGV_MAIN_MODE">Current active main mode ID</field>
-      <field type="uint8_t" name="sub_mode" enum="UGV_SUB_MODE">current active sub mode ID</field>
-      <field type="uint8_t" name="intended_main_mode" enum="UGV_MAIN_MODE"> Last main mode commanded by GCS via COMMAND_LONG </field>
-      <field type="uint8_t" name="intended_sub_mode" enum="UGV_SUB_MODE">Last sub mode commanded by GCS via COMMAND_LONG</field>
-      <field type="uint8_t" name="mode_change_reason" enum="MODE_CHANGE_REASON">Reason for last mode change</field>
+        <!-- BYTE 11 -->
+        <field type="uint8_t" name="subsystem_health_2" enum="UGV_HEALTH_STATE">
+            Packed subsystem health information.
 
-      
+            Bit 0-1 : LV PDU Health
+
+            0x01 = No communication
+            0x10 = Communicating and healthy
+            0x11 = Communicating and unhealthy
+            0x00 = Reserved
+        </field>
     </message>
 
     <message id="50002" name="UGV_COMPONENT_VERSION">
@@ -447,6 +478,17 @@
       <field type="uint8_t[32]" name="component4_checksum">Software checksum of component 4. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
       <field type="uint32_t" name="component5_sw">Software version of component 5. The recommended format is SEMVER: 'major.minor.patch'  (any format may be used). The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
       <field type="uint8_t[32]" name="component5_checksum">Software checksum of component 5. The field must be zero terminated if it has a value. The field is optional and can be empty/all zeros.</field>
+    </message>
+
+    <message id="109" name="RADIO_STATUS">
+      <description>Status generated by radio and injected into MAVLink stream.</description>
+      <field type="uint8_t" name="rssi" invalid="UINT8_MAX">Local (message sender) received signal strength indication in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.</field>
+      <field type="uint8_t" name="remrssi" invalid="UINT8_MAX">Remote (message receiver) signal strength indication in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.</field>
+      <field type="uint8_t" name="txbuf" units="%">Remaining free transmitter buffer space.</field>
+      <field type="uint8_t" name="noise" invalid="UINT8_MAX">Local background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], UINT8_MAX: invalid/unknown.</field>
+      <field type="uint8_t" name="remnoise" invalid="UINT8_MAX">Remote background noise level. These are device dependent RSSI values (scale as approx 2x dB on SiK radios). Values: [0-254], UINT8_MAX: invalid/unknown.</field>
+      <field type="uint16_t" name="rxerrors">Count of radio packet receive errors (since boot).</field>
+      <field type="uint16_t" name="fixed">Count of error corrected radio packets (since boot).</field>
     </message>
 
   </messages>
