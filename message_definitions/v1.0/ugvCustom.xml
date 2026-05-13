@@ -468,6 +468,10 @@
         Bit 6-7 : Reserved
       </field>
 
+      <field type="uint8_t" name="battery_remaining">
+          soc percentage of remaining battery
+      </field>
+        
       <!-- MODES -->
       <field type="uint8_t" name="main_mode" enum="UGV_MAIN_MODE">
         Current active main mode.
