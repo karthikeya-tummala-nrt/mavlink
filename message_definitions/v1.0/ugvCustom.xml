@@ -455,8 +455,8 @@
       <!-- BYTE 12 -->
       <field type="uint8_t" name="subsystem_health_3" enum="UGV_HEALTH_STATE">
         Bit 0-1 : Front Left Motor
-        Bit 2-3 : Front Right Motor
-        Bit 4-5 : Rear Left Motor
+        Bit 2-3 : Rear Left Motor
+        Bit 4-5 : Front Right Motor
         Bit 6-7 : Rear Right Motor
       </field>
 
