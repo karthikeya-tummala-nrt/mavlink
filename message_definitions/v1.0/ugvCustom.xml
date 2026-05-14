@@ -468,7 +468,7 @@
         Bit 6-7 : Reserved
       </field>
 
-      <field type="uint8_t" name="battery_remaining">
+      <field type="uint8_t" name="battery_soc">
           soc percentage of remaining battery
       </field>
         
